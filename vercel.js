@@ -1,7 +1,7 @@
 "use strict"
 
 const crypto = require('crypto')
-const http = require('http')
+
 
 let iv = '@@@@&&&&####$$$$'
 
@@ -94,7 +94,7 @@ const calculateChecksum = (params, key, salt) => {
 }
 
 
-const server = http.createServer((request, response) => {
+module.exports = (request, response) => {
     if (request.method === 'POST' && request.headers['content-type'] === "application/json") {
         let body = ''
 
@@ -155,6 +155,5 @@ const server = http.createServer((request, response) => {
         response.writeHead(405)
         response.end()
     }
-})
+}
 
-server.listen(3000)
